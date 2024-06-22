@@ -35,21 +35,12 @@ body {
 
 
 
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: orange; }
-}
-
-.typing-animation {
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.15em solid orange;
-  animation: typing 5s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
+.animate-blink {
+  animation: blink 0.7s infinite;
 }

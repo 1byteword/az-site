@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useEffect } from 'react';
+import React, { ReactNode, useRef, useState, useEffect } from 'react';
 import { Scroll } from 'lucide-react';
 import { Shield } from 'lucide-react';
 
@@ -69,26 +69,21 @@ const AmericanFlag = () => (
 
 
 const YeOldeRenaissanceWebsite = () => {
-  const ethosRef = useRef<HTMLParagraphElement>(null);
+  const [ethosText, setEthosText] = useState('');
+  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to consistently deliver great technologies into the hands of the People.";
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (ethosRef.current) {
-          ethosRef.current.classList.add('typing-animation');
-        }
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < fullEthosText.length) {
+        setEthosText(fullEthosText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
       }
-    }, { threshold: 0.5 });
+    }, 50); // Adjust the speed of typing here
 
-    if (ethosRef.current) {
-      observer.observe(ethosRef.current);
-    }
-
-    return () => {
-      if (ethosRef.current) {
-        observer.unobserve(ethosRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -108,10 +103,15 @@ const YeOldeRenaissanceWebsite = () => {
         </div>
       </section>
 
+      {/* Second Section - Solid Color Background with Animated Text */}
       <section className="h-screen w-full bg-sepia-700 relative snap-start">
         <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 text-parchment">
           <h2 className="text-4xl font-serif mb-6">Ethos</h2>
-          <p ref={ethosRef} className="text-xl text-center max-w-2xl font-serif">there is no greater multiplier for human prosperity than technology.</p>
+          <p className="text-xl text-center max-w-2xl font-serif">
+            {ethosText}
+            <span className="animate-blink">|</span>
+            <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
+          </p>
         </div>
       </section>
 
@@ -130,8 +130,8 @@ const YeOldeRenaissanceWebsite = () => {
           </div>
         </div>
 
-        <div className="p-8 h-[calc(100vh-2rem)]">
-          <MacWindow title="Azhan Khan - Projects & Education">
+        <div className="p-8 h-[calc(120vh-2rem)]">
+          <MacWindow title="Azhan">
             <div className="grid grid-cols-2 gap-8 text-black">
               <div>
                 <h2 className="text-xl font-bold mb-4">Projects</h2>
