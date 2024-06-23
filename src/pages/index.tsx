@@ -79,7 +79,8 @@ const IconBox = ({ icon, text }: { icon: ReactElement, text: string }) => (
 const YeOldeRenaissanceWebsite = () => {
   const [ethosText, setEthosText] = useState('');
   const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
-  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to bring and deliver masterful technologies into the hands of the People.";
+  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life&apos;s purpose to bring and deliver masterful technologies into the hands of the People.";
+
 
   useEffect(() => {
     let index = 0;
@@ -134,9 +135,9 @@ const YeOldeRenaissanceWebsite = () => {
         {/* Content */}
         <div className="relative z-10 max-w-3xl w-full space-y-16">
           <div className="text-center">
-            <p className="text-2xl italic mb-4 font-serif">
-              "{quote}"
-            </p>
+              <p className="text-2xl italic mb-4 font-serif">
+                &ldquo;{quote}&rdquo;
+              </p>
             <p className="text-lg font-serif opacity-80">- Arthur C. Clarke</p>
           </div>
 
