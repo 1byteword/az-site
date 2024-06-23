@@ -178,13 +178,7 @@ const YeOldeRenaissanceWebsite = () => {
         <div className="absolute inset-0 bg-gradient-radial from-transparent to-amber-200/30"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Cpath fill=%22%23d97706%22 fill-opacity=%22.1%22 d=%22M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z%22%2F%3E%3C%2Fsvg%3E')] opacity-30"></div>
         <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 text-stone-800">
-          <h2 className="text-5xl font-serif mb-8 text-center">I want to bring about a world of better engineering.</h2>
-          <p className="text-2xl font-serif mb-8 text-center max-w-2xl">My current interests are distributed systems, AI/ML, and robotics.</p>
-          <div className="grid grid-cols-3 gap-8 mb-8">
-            <IconBox icon={<Server />} text="Distributed Systems" />
-            <IconBox icon={<Brain />} text="Machine Learning" />
-            <IconBox icon={<Code />} text="Algorithms" />
-          </div>
+          <h2 className="text-6xl font-serif mb-9 text-center">I want to bring beautiful engineering to the world.</h2>
           <a 
             href="mailto:1byteword@gmail.com" 
             className="px-6 py-3 bg-amber-100/70 hover:bg-amber-200/80 text-stone-800 border border-amber-600/30 rounded-sm text-xl font-serif transition-all duration-300 hover:shadow-lg"
@@ -193,8 +187,8 @@ const YeOldeRenaissanceWebsite = () => {
           </a>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-          <p className="text-sm text-stone-700 mb-2">Empowering the digital renaissance through innovative technology</p>
-          <p className="text-sm text-stone-700">&copy; 2024 Azhan Khan</p>
+          
+          <p className="text-sm text-stone-700 mb-2">&copy; 2024 Azhan Khan</p>
         </div>
       </section>
     </div>
