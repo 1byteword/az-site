@@ -162,7 +162,7 @@ const YeOldeRenaissanceWebsite = () => {
           </div>
           <div className="flex items-center space-x-2 text-black">
             <span>🔋</span>
-            <span>4:20 PM</span>
+            <span>4:44 PM</span>
           </div>
         </div>
 
