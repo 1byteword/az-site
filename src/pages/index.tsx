@@ -78,7 +78,8 @@ const IconBox = ({ icon, text }: { icon: ReactElement, text: string }) => (
 
 const YeOldeRenaissanceWebsite = () => {
   const [ethosText, setEthosText] = useState('');
-  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to consistently deliver great technologies into the hands of the People.";
+  const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
+  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to bring and deliver masterful technologies into the hands of the People.";
 
   useEffect(() => {
     let index = 0;
@@ -93,6 +94,11 @@ const YeOldeRenaissanceWebsite = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const warmBrownStyle = {
+    backgroundColor: '#8B4513',
+    color: '#F5DEB3'
+  };
 
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory">
@@ -111,15 +117,37 @@ const YeOldeRenaissanceWebsite = () => {
         </div>
       </section>
 
-      {/* Second Section - Solid Color Background with Animated Text */}
-      <section className="h-screen w-full bg-sepia-700 relative snap-start">
-        <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 text-parchment">
-          <h2 className="text-4xl font-serif mb-6">Ethos</h2>
-          <p className="text-xl text-center max-w-2xl font-serif">
-            {ethosText}
-            <span className="animate-blink">|</span>
-            <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
-          </p>
+      {/* Updated Second Section - Warm Brown Da Vinci-inspired Background */}
+      <section className="h-screen w-full relative snap-start flex flex-col justify-center items-center p-8 overflow-hidden bg-[#7d573c] text-[#F5DEB3]">
+        {/* Enhanced Da Vinci-inspired background */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Cpath d=%22M0 0L100 100M100 0L0 100%22 stroke=%22%23DEB887%22 stroke-width=%221%22 /%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%221%22 fill=%22%23FAEBD7%22 /%3E%3C/svg%3E')] opacity-20"></div>
+        
+        {/* Hand-drawn style lines */}
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10%" y1="0" x2="10%" y2="100%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
+          <line x1="90%" y1="0" x2="90%" y2="100%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
+          <line x1="0" y1="10%" x2="100%" y2="10%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
+          <line x1="0" y1="90%" x2="100%" y2="90%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
+        </svg>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl w-full space-y-16">
+          <div className="text-center">
+            <p className="text-2xl italic mb-4 font-serif">
+              "{quote}"
+            </p>
+            <p className="text-lg font-serif opacity-80">- Arthur C. Clarke</p>
+          </div>
+
+          <div className="space-y-6">
+            <h2 className="text-4xl font-serif text-center">Ethos</h2>
+            <p className="text-xl text-center font-serif">
+              {ethosText}
+              <span className="animate-blink">|</span>
+              <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
+            </p>
+          </div>
         </div>
       </section>
 
