@@ -22,7 +22,7 @@ const MacWindow: React.FC<MacWindowProps> = ({ title, children }) => (
     <div className="p-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
       {children}
     </div>
-    <div className="border-t-2 border-black p-1 flex justify-between items-center text-xs">
+    <div className="border-t-2 border-black p-1 flex justify-between items-center text-xs text-black">
       <div>6 items</div>
       <div>1194K available</div>
     </div>
