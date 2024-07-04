@@ -76,6 +76,81 @@ const IconBox = ({ icon, text }: { icon: ReactElement, text: string }) => (
   </div>
 );
 
+
+
+const EtherealEthosSection: React.FC = () => {
+  const [ethosText, setEthosText] = useState('');
+  const [drawingProgress, setDrawingProgress] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
+  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to bring and deliver masterful technologies into the hands of the People.";
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < fullEthosText.length) {
+        setEthosText(fullEthosText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+        setDrawingProgress(scrollProgress);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial call to set initial state
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="h-screen w-full relative snap-start overflow-hidden bg-[#f5e6d3]">
+      <div className="absolute inset-0 flex">
+        <div className="w-2/3"></div>
+        <div className="w-1/3 relative">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+
+          </svg>
+        </div>
+      </div>
+      
+      <div className="relative z-10 h-full flex items-center">
+        <div className="w-2/3 pl-16 pr-8">
+          <h2 className="text-5xl font-serif mb-8 text-[#4a2511]">Ethos</h2>
+          <div className="space-y-8">
+            <p className="text-2xl italic mb-6 font-serif text-[#2c4c3b]">
+              &ldquo;{quote}&rdquo;
+            </p>
+            <p className="text-lg font-serif text-[#4a2511]">- Arthur C. Clarke</p>
+            <p className="text-xl font-serif text-[#2c4c3b] leading-relaxed">
+              {ethosText}
+              <span className="animate-blink">|</span>
+              <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+
+
+
+
 const YeOldeRenaissanceWebsite = () => {
   const [ethosText, setEthosText] = useState('');
   const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
@@ -118,39 +193,7 @@ const YeOldeRenaissanceWebsite = () => {
         </div>
       </section>
 
-      {/* Updated Second Section - Warm Brown Da Vinci-inspired Background */}
-      <section className="h-screen w-full relative snap-start flex flex-col justify-center items-center p-8 overflow-hidden bg-[#7d573c] text-[#F5DEB3]">
-        {/* Enhanced Da Vinci-inspired background */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Cpath d=%22M0 0L100 100M100 0L0 100%22 stroke=%22%23DEB887%22 stroke-width=%221%22 /%3E%3C/svg%3E')] opacity-30"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%221%22 fill=%22%23FAEBD7%22 /%3E%3C/svg%3E')] opacity-20"></div>
-        
-        {/* Hand-drawn style lines */}
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <line x1="10%" y1="0" x2="10%" y2="100%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
-          <line x1="90%" y1="0" x2="90%" y2="100%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
-          <line x1="0" y1="10%" x2="100%" y2="10%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
-          <line x1="0" y1="90%" x2="100%" y2="90%" stroke="#DEB887" strokeWidth="0.5" strokeDasharray="5,5" />
-        </svg>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-3xl w-full space-y-16">
-          <div className="text-center">
-              <p className="text-2xl italic mb-4 font-serif">
-                &ldquo;{quote}&rdquo;
-              </p>
-            <p className="text-lg font-serif opacity-80">- Arthur C. Clarke</p>
-          </div>
-
-          <div className="space-y-6">
-            <h2 className="text-4xl font-serif text-center">Ethos</h2>
-            <p className="text-xl text-center font-serif">
-              {ethosText}
-              <span className="animate-blink">|</span>
-              <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
-            </p>
-          </div>
-        </div>
-      </section>
+      <EtherealEthosSection />
 
       <section className="h-screen w-full bg-gray-200 relative snap-start overflow-hidden font-mono">
         <div className="bg-white border-b-2 border-black p-1 flex justify-between items-center">
@@ -207,7 +250,7 @@ const YeOldeRenaissanceWebsite = () => {
         <div className="absolute inset-0 bg-gradient-radial from-transparent to-amber-200/30"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Cpath fill=%22%23d97706%22 fill-opacity=%22.1%22 d=%22M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z%22%2F%3E%3C%2Fsvg%3E')] opacity-30"></div>
         <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 text-stone-800">
-          <h2 className="text-6xl font-serif mb-14 text-center">I want to bring masterful engineering to the world.</h2>
+          <h2 className="text-6xl font-serif mb-14 text-center">Let's bring masterful engineering to the world.</h2>
           
           <a 
             href="mailto:1byteword@gmail.com" 
