@@ -4,6 +4,124 @@ import { Shield, Leaf, Sun } from 'lucide-react';
 
 import { Server, Brain, Database, Code, BookOpen } from 'lucide-react';
 
+const EnhancedDUMTerminal = () => {
+  const [leftContent, setLeftContent] = useState('');
+  const [rightContent, setRightContent] = useState('');
+  const [cursorVisible, setCursorVisible] = useState(true);
+
+  const leftFullContent = `Name: Azhan Khan
+Work: [redacted] | Developer
+OS: MacOS
+Editor: Neovim
+Languages: Rust, Go, TypeScript
+
+1
+2  ▄▄▄      ▒███████▒ ██░ ██  ▄▄▄       ███▄    █ 
+3 ▒████▄    ▒ ▒ ▒ ▄▀░▓██░ ██▒▒████▄     ██ ▀█   █ 
+4 ▒██  ▀█▄  ░ ▒ ▄▀▒░ ▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒
+5 ░██▄▄▄▄██   ▄▀▒   ░░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒
+6  ▓█   ▓██▒▒███████▒░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░
+7  ▒▒   ▓▒█░░▒▒ ▓░▒░▒ ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒ 
+8   ▒   ▒▒ ░░░▒ ▒ ░ ▒ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░
+9   ░   ▒   ░ ░ ░ ░ ░ ░  ░░ ░  ░   ▒      ░   ░ ░ 
+10      ░  ░  ░ ░     ░  ░  ░      ░  ░         ░ 
+11          ░                                     
+12
+13 Projects:
+14 ├─ PROJECT NITEMRE
+15 │  └─ NSIN and MIT AI Accelerator collaboration
+16 │     for US Air Force AI applications
+17 │     [PyTorch, TypeScript, Docker, CI/CD]
+18 │
+19 ├─ Distributed Systems Research
+20 │  └─ Novel approaches to consensus and sharding
+21 │     [Rust, Go, Simulation Frameworks]
+22 │
+23 └─ AI-Driven Code Generation
+24    └─ Automating code generation with LLMs
+25       [Python, TensorFlow, GPT-3 API]`.trim();
+
+  const rightFullContent = ` SSkills:
+├─ Languages: Rust, Go, TypeScript, Python, C++
+├─ Frameworks: React, Node.js, TensorFlow, PyTorch
+├─ Tools: Docker, Kubernetes, Git, CI/CD pipelines
+└─ Concepts: Distributed Systems, ML, Cryptography
+
+Education:
+└─ Georgia Institute of Technology
+   ├─ B.S. in Computer Science
+   └─ Focus: Intelligence and Modeling/Simulation
+      ACM ICPC competitor
+
+Recent Activity:
+[2024-09-01] Committed to project NITEMRE
+[2024-08-30] Merged PR: Implement new consensus algorithm
+[2024-08-28] Opened issue: Optimize Docker build process
+[2024-08-25] Deployed v2.3.0 to production
+[2024-08-22] Completed code review for AI module
+[2024-08-20] Started new research on quantum computing
+[2024-08-18] Presented at Tech Conference 2024
+[2024-08-15] Achieved 99.99% uptime for Q2 2024`.trim();
+
+  useEffect(() => {
+    let leftIndex = 0;
+    let rightIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (leftIndex < leftFullContent.length) {
+        setLeftContent(prev => prev + leftFullContent[leftIndex]);
+        leftIndex++;
+      }
+      if (rightIndex < rightFullContent.length) {
+        setRightContent(prev => prev + rightFullContent[rightIndex]);
+        rightIndex++;
+      }
+      if (leftIndex >= leftFullContent.length && rightIndex >= rightFullContent.length) {
+        clearInterval(typingInterval);
+      }
+    }, 10);
+
+    const cursorInterval = setInterval(() => {
+      setCursorVisible(prev => !prev);
+    }, 330);
+
+    return () => {
+      clearInterval(typingInterval);
+      clearInterval(cursorInterval);
+    };
+  }, []);
+  return (
+    <div className="bg-black p-4 font-mono text-s leading-4 h-screen w-full overflow-hidden flex flex-col relative">
+      <div className="flex flex-grow overflow-hidden">
+        <div className="flex-1 pr-2 border-r border-green-500 overflow-auto">
+          <div className="text-green-500 whitespace-pre-wrap">
+            {leftContent.split('\n').map((line, index) => (
+              <div key={index} className="flex">
+                <span className="w-6 text-green-800">{index + 1}</span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex-1 pl-2 overflow-auto">
+          <div className="text-green-500 whitespace-pre-wrap">
+            {rightContent.split('\n').map((line, index) => (
+              <div key={index} className="flex">
+                <span className="w-6 text-green-800">{index + 1}</span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="text-green-500 mt-2 text-xs absolute bottom-1 left-4">
+        NORMAL github-readme.txt [RO] 3,80 Top 1:80 10:56
+      </div>
+    </div>
+  );
+};
+
+
+
 interface MacWindowProps {
   title: string;
   children: ReactNode;
@@ -154,7 +272,7 @@ const EtherealEthosSection: React.FC = () => {
 const YeOldeRenaissanceWebsite = () => {
   const [ethosText, setEthosText] = useState('');
   const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
-  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life&apos;s purpose to bring and deliver masterful technologies into the hands of the People.";
+  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my lifes purpose to bring and deliver masterful technologies into the hands of the People.";
 
 
   useEffect(() => {
@@ -264,6 +382,11 @@ const YeOldeRenaissanceWebsite = () => {
           <p className="text-sm text-stone-700 mb-2">&copy; 2024 Azhan Khan</p>
         </div>
       </section>
+
+      <section className="h-screen w-full bg-black relative snap-start overflow-hidden">
+        <EnhancedDUMTerminal />
+      </section>
+
     </div>
   );
 };
