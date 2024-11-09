@@ -1,8 +1,5 @@
-import React, { ReactNode, useRef, useState, useEffect, ReactElement } from 'react';
-import { Scroll } from 'lucide-react';
-import { Shield, Leaf, Sun } from 'lucide-react';
-
-import { Server, Brain, Database, Code, BookOpen } from 'lucide-react';
+import React from 'react';
+import { ReactNode, useRef, useState, useEffect, ReactElement } from 'react';
 
 const AmericanFlag = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" className="w-12 h-8">
@@ -27,6 +24,7 @@ const AmericanFlag = () => (
     </g>
   </svg>
 );
+
 
 const EtherealEthosSection: React.FC = () => {
   const [ethosText, setEthosText] = useState('');
@@ -96,16 +94,88 @@ const EtherealEthosSection: React.FC = () => {
   );
 };
 
+const WorkExperienceSection = () => {
+  const experiences = [
+    {
+      company: "Modern Company One",
+      role: "Senior Software Engineer",
+      period: "2022 - Present",
+      description: [
+        "Led development of distributed systems serving millions of users",
+        "Architected and implemented scalable microservices infrastructure",
+        "Mentored junior engineers and established best practices"
+      ],
+      icon: "🏰"
+    },
+    {
+      company: "Tech Startup Two",
+      role: "Software Engineer",
+      period: "2020 - 2022",
+      description: [
+        "Built and maintained cloud-native applications",
+        "Implemented machine learning pipelines for data processing",
+        "Reduced system latency by 40% through optimization"
+      ],
+      icon: "⚔️"
+    },
+    {
+      company: "Enterprise Three",
+      role: "Software Developer",
+      period: "2018 - 2020",
+      description: [
+        "Developed full-stack applications using React and Node.js",
+        "Collaborated with cross-functional teams to deliver features",
+        "Improved CI/CD pipeline reducing deployment time by 50%"
+      ],
+      icon: "📜"
+    }
+  ];
 
-
-
-
+  return (
+    <section className="h-screen w-full relative snap-start bg-[#f5e6d3] overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/parchment-texture.png')] opacity-10" />
+      <div className="relative h-full flex flex-col p-16">
+        <h2 className="text-5xl font-serif mb-8 text-[#4a2511]">
+          Work Experience
+        </h2>
+        
+        <div className="flex-1 grid grid-cols-3 gap-8">
+          {experiences.map((exp, index) => (
+            <div 
+              key={index}
+              className="bg-[#f5e6d3]/50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#2c4c3b]/20"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">{exp.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-serif text-[#2c4c3b] truncate">{exp.role}</h3>
+                  <p className="font-serif font-medium text-[#4a2511] text-sm truncate">
+                    {exp.company}
+                  </p>
+                  <p className="font-serif text-[#4a2511]/80 text-sm">{exp.period}</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                {exp.description.map((detail, idx) => (
+                  <div key={idx} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 mt-1.5 rounded-full bg-[#2c4c3b] flex-shrink-0" />
+                    <p className="font-serif text-sm text-[#4a2511] leading-relaxed">{detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const YeOldeRenaissanceWebsite = () => {
   const [ethosText, setEthosText] = useState('');
   const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
   const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my lifes purpose to bring and deliver masterful technologies into the hands of the People.";
-
 
   useEffect(() => {
     let index = 0;
@@ -116,15 +186,10 @@ const YeOldeRenaissanceWebsite = () => {
       } else {
         clearInterval(interval);
       }
-    }, 50); // Adjust the speed of typing here
+    }, 50);
 
     return () => clearInterval(interval);
   }, []);
-
-  const warmBrownStyle = {
-    backgroundColor: '#8B4513',
-    color: '#F5DEB3'
-  };
 
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory">
@@ -144,9 +209,9 @@ const YeOldeRenaissanceWebsite = () => {
       </section>
 
       <EtherealEthosSection />
+      <WorkExperienceSection />
     </div>
   );
 };
-
 
 export default YeOldeRenaissanceWebsite;
