@@ -10,10 +10,9 @@ const EnhancedDUMTerminal = () => {
   const [cursorVisible, setCursorVisible] = useState(true);
 
   const leftFullContent = `Name: Azhan Khan
-Work: [redacted] | Developer
-OS: MacOS
-Editor: Neovim
-Languages: Rust, Go, TypeScript
+  
+Work: [redacted] | Software Engineer
+Languages: Rust, Go, TypeScript, Python, C++
 
 1
 2  ▄▄▄      ▒███████▒ ██░ ██  ▄▄▄       ███▄    █ 
@@ -31,21 +30,21 @@ Languages: Rust, Go, TypeScript
 14 ├─ PROJECT NITEMRE
 15 │  └─ NSIN and MIT AI Accelerator collaboration
 16 │     for US Air Force AI applications
-17 │     [PyTorch, TypeScript, Docker, CI/CD]
+17 │     PyTorch, TypeScript, Docker, CI/CD
 18 │
 19 ├─ Distributed Systems Research
 20 │  └─ Novel approaches to consensus and sharding
-21 │     [Rust, Go, Simulation Frameworks]
-22 │
-23 └─ AI-Driven Code Generation
-24    └─ Automating code generation with LLMs
-25       [Python, TensorFlow, GPT-3 API]`.trim();
+21 │     Rust, Go, Simulation Frameworks `.trim();
 
   const rightFullContent = ` SSkills:
-├─ Languages: Rust, Go, TypeScript, Python, C++
-├─ Frameworks: React, Node.js, TensorFlow, PyTorch
-├─ Tools: Docker, Kubernetes, Git, CI/CD pipelines
-└─ Concepts: Distributed Systems, ML, Cryptography
+├─ Languages:
+│  └─ Rust, Go, TypeScript, Python, C++
+├─ Frameworks: 
+│  └─ React, Node.js, TensorFlow, PyTorch
+├─ Tools: 
+│  └─ Docker, Kubernetes, Git, CI/CD pipelines
+├─ Concepts: 
+│  └─ Distributed Systems, ML, Cryptography
 
 Education:
 └─ Georgia Institute of Technology
