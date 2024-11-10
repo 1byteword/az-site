@@ -145,7 +145,7 @@ const EtherealEthosSection = () => {
         {/* Right side */}
         <div className="w-1/2 pr-16 pl-8 flex items-center">
           <p className="text-xl text-[#4a2511] leading-relaxed">
-            I'm currently a Data Engineer at Rivian, where I build software tools to help the company understand and improve their vehicle fleets. I get to wear many hats; designing and building data pipelines, chaos engineering, systems engineering, hacking on observability tools, and more.
+            I am currently a Data Engineer at Rivian, where I build software tools to help the company understand and improve their vehicle fleets. I get to wear many hats; designing and building data pipelines, chaos engineering, systems engineering, hacking on observability tools, and more.
           </p>
         </div>
       </div>
