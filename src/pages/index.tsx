@@ -1,5 +1,11 @@
 import React from 'react';
 import { ReactNode, useRef, useState, useEffect, ReactElement } from 'react';
+import { Crimson_Pro } from 'next/font/google';
+
+const crimsonPro = Crimson_Pro({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+});
 
 const AmericanFlag = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" className="w-12 h-8">
@@ -11,7 +17,6 @@ const AmericanFlag = () => (
         <g id="s4">
           <g id="s5">
             <g id="s6">
-              
               <use href="#s" transform="translate(5,0)"/>
             </g>
             <use href="#s6" transform="translate(5,0)"/>
@@ -25,27 +30,72 @@ const AmericanFlag = () => (
   </svg>
 );
 
+const BlogPostsSection = () => {
+  const blogPosts = [
+    {
+      title: "The Architecture of Modern Software",
+      date: "February 10, 2024",
+      preview: "Like the great cathedral builders of old, we too must balance beauty with function in our digital constructions...",
+      readTime: "10 min read",
+      category: "Architecture",
+      icon: "🏛️"
+    }
+  ];
 
-const EtherealEthosSection: React.FC = () => {
+  return (
+    <section className={`${crimsonPro.className} h-screen w-full relative snap-start bg-[#0f271f] overflow-hidden`}>
+      <div className="absolute inset-0 bg-[url('/parchment-texture.png')] opacity-5" />
+      <div className="relative h-full flex flex-col p-16">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-5xl text-white">Writings</h2>
+          <button className="px-4 py-2 border border-white text-white rounded-sm hover:bg-white hover:text-[#0f321f] transition-colors duration-300">
+            View All Writings
+          </button>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-8">
+          {blogPosts.map((post, index) => (
+            <article 
+              key={index}
+              className="group bg-[#005e35]/50 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-white/20 cursor-pointer"
+            >
+              <div className="flex items-start gap-4">
+                <span className="text-4xl">{post.icon}</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-sm text-white/80">{post.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-white/40" />
+                    <span className="text-sm text-white/80">{post.readTime}</span>
+                  </div>
+                  
+                  <h3 className="text-2xl text-white mb-3 group-hover:text-white/80 transition-colors duration-300">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-white/90 leading-relaxed mb-4">
+                    {post.preview}
+                  </p>
+                  
+                  <div className="flex items-center">
+                    <span className="px-3 py-1 text-sm text-white border border-white/20 rounded-sm">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const EtherealEthosSection = () => {
   const [ethosText, setEthosText] = useState('');
   const [drawingProgress, setDrawingProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
-  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my life's purpose to bring and deliver masterful technologies into the hands of the People.";
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < fullEthosText.length) {
-        setEthosText(fullEthosText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,114 +108,38 @@ const EtherealEthosSection: React.FC = () => {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
-      handleScroll(); // Initial call to set initial state
+      handleScroll();
       return () => window.removeEventListener('scroll', handleScroll);
     }
   }, []);
 
   return (
-    <section ref={sectionRef} className="h-screen w-full relative snap-start overflow-hidden bg-[#f5e6d3]">
-      <div className="absolute inset-0 flex">
-        <div className="w-2/3"></div>
-        <div className="w-1/3 relative">
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-
-          </svg>
-        </div>
-      </div>
+    <section ref={sectionRef} className={`${crimsonPro.className} h-screen w-full relative snap-start overflow-hidden bg-[#f5e6d3]`}>
+      {/* Adjusted vertical line - centered and 60% height */}
+      <div className="absolute left-1/2 top-[20%] bottom-[20%] w-px bg-[#2c4c3b]/30" />
       
-      <div className="relative z-10 h-full flex items-center">
-        <div className="w-2/3 pl-16 pr-8">
-          <h2 className="text-5xl font-serif mb-8 text-[#4a2511]">Ethos</h2>
-          <div className="space-y-8">
-            <p className="text-2xl italic mb-6 font-serif text-[#2c4c3b]">
-              &ldquo;{quote}&rdquo;
-            </p>
-            <p className="text-lg font-serif text-[#4a2511]">- Arthur C. Clarke</p>
-            <p className="text-xl font-serif text-[#2c4c3b] leading-relaxed">
-              {ethosText}
-              <span className="animate-blink">|</span>
-              <span className="invisible">{fullEthosText.slice(ethosText.length)}</span>
-            </p>
+      <div className="relative z-10 h-full flex">
+        {/* Left side */}
+        <div className="w-1/2 pl-16 pr-8 flex items-center">
+          <div>
+            <h2 className="text-5xl mb-8 text-[#4a2511]">Ethos</h2>
+            <div className="space-y-8">
+              <p className="text-2xl italic mb-6 text-[#2c4c3b]">
+                &ldquo;{quote}&rdquo;
+              </p>
+              <p className="text-lg text-[#4a2511]">- Arthur C. Clarke</p>
+              <p className="text-xl text-[#2c4c3b] leading-relaxed">
+                {ethosText}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
 
-const WorkExperienceSection = () => {
-  const experiences = [
-    {
-      company: "Modern Company One",
-      role: "Senior Software Engineer",
-      period: "2022 - Present",
-      description: [
-        "Led development of distributed systems serving millions of users",
-        "Architected and implemented scalable microservices infrastructure",
-        "Mentored junior engineers and established best practices"
-      ],
-      icon: "🏰"
-    },
-    {
-      company: "Tech Startup Two",
-      role: "Software Engineer",
-      period: "2020 - 2022",
-      description: [
-        "Built and maintained cloud-native applications",
-        "Implemented machine learning pipelines for data processing",
-        "Reduced system latency by 40% through optimization"
-      ],
-      icon: "⚔️"
-    },
-    {
-      company: "Enterprise Three",
-      role: "Software Developer",
-      period: "2018 - 2020",
-      description: [
-        "Developed full-stack applications using React and Node.js",
-        "Collaborated with cross-functional teams to deliver features",
-        "Improved CI/CD pipeline reducing deployment time by 50%"
-      ],
-      icon: "📜"
-    }
-  ];
-
-  return (
-    <section className="h-screen w-full relative snap-start bg-[#f5e6d3] overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/parchment-texture.png')] opacity-10" />
-      <div className="relative h-full flex flex-col p-16">
-        <h2 className="text-5xl font-serif mb-8 text-[#4a2511]">
-          Work Experience
-        </h2>
-        
-        <div className="flex-1 grid grid-cols-3 gap-8">
-          {experiences.map((exp, index) => (
-            <div 
-              key={index}
-              className="bg-[#f5e6d3]/50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#2c4c3b]/20"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">{exp.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-serif text-[#2c4c3b] truncate">{exp.role}</h3>
-                  <p className="font-serif font-medium text-[#4a2511] text-sm truncate">
-                    {exp.company}
-                  </p>
-                  <p className="font-serif text-[#4a2511]/80 text-sm">{exp.period}</p>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                {exp.description.map((detail, idx) => (
-                  <div key={idx} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 mt-1.5 rounded-full bg-[#2c4c3b] flex-shrink-0" />
-                    <p className="font-serif text-sm text-[#4a2511] leading-relaxed">{detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Right side */}
+        <div className="w-1/2 pr-16 pl-8 flex items-center">
+          <p className="text-xl text-[#4a2511] leading-relaxed">
+            I'm currently a Data Engineer at Rivian, where I build software tools to help the company understand and improve their vehicle fleets. I get to wear many hats; designing and building data pipelines, chaos engineering, systems engineering, hacking on observability tools, and more.
+          </p>
         </div>
       </div>
     </section>
@@ -173,43 +147,25 @@ const WorkExperienceSection = () => {
 };
 
 const YeOldeRenaissanceWebsite = () => {
-  const [ethosText, setEthosText] = useState('');
-  const quote = "Any sufficiently advanced technology is indistinguishable from magic.";
-  const fullEthosText = "as I see it, there is no greater multiplier for human prosperity than great technology. I am making it my lifes purpose to bring and deliver masterful technologies into the hands of the People.";
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < fullEthosText.length) {
-        setEthosText(fullEthosText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory">
+    <div className={`${crimsonPro.className} h-screen w-full overflow-y-scroll snap-y snap-mandatory`}>
       <section className="h-screen w-full bg-[url('/schoolofathens.jpg')] bg-cover bg-center relative snap-start">
         <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_10%,rgba(0,0,0,0.7)_60%)]"></div>
         <div className="relative z-10 h-full flex flex-col justify-between p-8 text-parchment">
           <header className="flex justify-between items-center">
             <AmericanFlag />
-            <button className="px-4 py-2 bg-brown-600 text-parchment rounded-sm text-sm font-serif">Contact</button>
+            <button className="px-4 py-2 bg-brown-600 text-parchment rounded-sm text-sm">Contact</button>
           </header>
           <main className="flex-grow flex flex-col justify-end">
-            <h1 className="text-5xl font-serif mb-4">Azhan Khan</h1>
-            <p className="text-xl mb-4 font-serif">Software Engineering, Distributed Systems, AI/ML</p>
-            <button className="px-6 py-3 bg-parchment/20 text-parchment rounded-sm w-max font-serif">Learn More</button>
+            <h1 className="text-6xl mb-4">Azhan Khan</h1>
+            <p className="text-2xl mb-4">Software and Data Engineering, Distributed Systems, AI/ML</p>
+            <button className="px-6 py-3 bg-parchment/20 text-parchment rounded-sm w-max">Learn More</button>
           </main>
         </div>
       </section>
 
       <EtherealEthosSection />
-      <WorkExperienceSection />
+      <BlogPostsSection />
     </div>
   );
 };
