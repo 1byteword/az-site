@@ -47,7 +47,7 @@ const BlogPostsSection = () => {
           onClick={handleBack}
           className="text-white/80 hover:text-white transition-colors mb-4 cursor-pointer"
         >
-          ←←← Back
+          ← Back
         </button>
         <hr className="border-white/20 w-full" />
       </div>
