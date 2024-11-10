@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactNode, useRef, useState, useEffect, ReactElement } from 'react';
 import { Crimson_Pro } from 'next/font/google';
+import Link from 'next/link';
 
 const crimsonPro = Crimson_Pro({ 
   subsets: ['latin'],
@@ -33,12 +34,13 @@ const AmericanFlag = () => (
 const BlogPostsSection = () => {
   const blogPosts = [
     {
-      title: "The Architecture of Modern Software",
-      date: "February 10, 2024",
-      preview: "Like the great cathedral builders of old, we too must balance beauty with function in our digital constructions...",
+      title: "The Modern Cathedral",
+      date: "November 10, 2024",
+      preview: "Where have we come from?",
       readTime: "10 min read",
       category: "Architecture",
-      icon: "🏛️"
+      icon: "🏛️",
+      slug: "architecture-of-modern-software"
     }
   ];
 
@@ -55,6 +57,10 @@ const BlogPostsSection = () => {
         
         <div className="grid grid-cols-2 gap-8">
           {blogPosts.map((post, index) => (
+            <Link 
+              href={`/blog/${post.slug}`} 
+              key={index}
+            >
             <article 
               key={index}
               className="group bg-[#005e35]/50 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-white/20 cursor-pointer"
@@ -84,6 +90,7 @@ const BlogPostsSection = () => {
                 </div>
               </div>
             </article>
+            </Link>
           ))}
         </div>
       </div>
